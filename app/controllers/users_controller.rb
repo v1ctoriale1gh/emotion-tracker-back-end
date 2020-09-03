@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :set_user
 
     def show
-        render json: @user.to_json(:except => [:created_at, :updated_at])
+        render json: @user.to_json(:except => [:password_digest, :created_at, :updated_at])
     end
 
     def emotion
