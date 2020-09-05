@@ -6,11 +6,10 @@ class UsersController < ApplicationController
     end
 
     def emotion
-        byebug
+        #byebug
         emotion = params[:emotion]
         emotion_list = @user.make_emotion_list(emotion)
         render json: emotion_list.to_json(:except => [:log_id, :updated_at] )
-        
     end
 
     private
