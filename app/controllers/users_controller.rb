@@ -4,9 +4,9 @@ class UsersController < ApplicationController
     def create
         user = User.create(user_params(:name, :username, :password))
             if user.valid?
-                render json: user, except: [:created_at, :updated_at]
+                render json: user, except: [:created_at, :updated_at, :password_digest]
             else
-                render json: { error: 'Failed to create user. Please make sure all fields are filled and try again.' }
+                render json: { signuperror: 'Username taken or fields unfilled.  Please, try again.' }
             end
     end
 
@@ -17,14 +17,25 @@ class UsersController < ApplicationController
         render json: emotion_list.to_json(:except => [:log_id, :updated_at] )
     end
 
+    def login
+        #byebug
+        user = User.find_by(username: params[:user][:username])
+        if user && user.authenticate(params[:user][:password])
+            render json: user, except: [:created_at, :updated_at, :password_digest]
+        else
+            render json: { loginerror: 'Username not found or password invalid. Please, try again.' }
+        end
+    end
+
+
     private
 
     def set_user
         @user = User.find_by(id: params[:id])
     end
 
-    def user_params(*args)
-        params.require(:user).permit(*args)
+    def user_params
+        params.require(:user).permit(:name, :username, :password)
     end
 
 end
