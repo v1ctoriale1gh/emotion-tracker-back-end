@@ -1,6 +1,7 @@
 class LogsController < ApplicationController
 
     def index
+        #byebug
         user = User.find_by(id: params[:user_id])
         logs = user.logs.last(10)
         render json: logs.to_json(:include => {
@@ -19,7 +20,7 @@ class LogsController < ApplicationController
         Emotion.create(log_id: log.id, name: "Happiness", intensity: params["log"]["Happiness"])
         Emotion.create(log_id: log.id, name: "Peacefulness", intensity: params["log"]["Peacefulness"])
         Emotion.create(log_id: log.id, name: "Gratitude", intensity: params["log"]["Gratitude"])
-        byebug
+        render json: "Success!"
     end
 
 end

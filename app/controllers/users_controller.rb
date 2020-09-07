@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
     before_action :set_user
 
-    def show
-        render json: @user.to_json(:except => [:password_digest, :created_at, :updated_at])
+    def create
+        user = User.create(user_params(:name, :username, :password))
+            if user.valid?
+                render json: user, except: [:created_at, :updated_at]
+            else
+                render json: { error: 'Failed to create user. Please make sure all fields are filled and try again.' }
+            end
     end
 
     def emotion
@@ -16,6 +21,10 @@ class UsersController < ApplicationController
 
     def set_user
         @user = User.find_by(id: params[:id])
+    end
+
+    def user_params(*args)
+        params.require(:user).permit(*args)
     end
 
 end

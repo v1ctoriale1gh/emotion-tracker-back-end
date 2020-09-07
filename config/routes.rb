@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 #get '/users/:id/:emotion', to: 'users#emotion'
 
-resources :users, only: [:create, :show] do
+resources :users, only: [:create] do
   resources :logs, only: [:index, :create]
 end
 
