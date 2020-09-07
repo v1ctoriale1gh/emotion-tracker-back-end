@@ -25,7 +25,11 @@ rails s
 ```
 
 Navigate to the front-end of this project: https://github.com/v1ctoriale1gh/emotion-tracker-front-end
-Then open up index.html in your favorite browser.
+
+Then run
+```
+npm start
+```
 
 ## Contributor's Guide
 
