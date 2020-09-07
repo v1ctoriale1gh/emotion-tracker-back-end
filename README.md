@@ -24,7 +24,7 @@ Next, run
 rails s
 ```
 
-Navigate to the front-end of this project: https://github.com/v1ctoriale1gh/emotion-logger-front-end
+Navigate to the front-end of this project: https://github.com/v1ctoriale1gh/emotion-tracker-front-end
 Then open up index.html in your favorite browser.
 
 ## Contributor's Guide
