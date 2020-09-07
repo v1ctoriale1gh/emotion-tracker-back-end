@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :set_user
 
     def create
-        user = User.create(user_params(:name, :username, :password))
+        user = User.create(user_params)
             if user.valid?
                 render json: user, except: [:created_at, :updated_at, :password_digest]
             else
